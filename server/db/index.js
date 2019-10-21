@@ -1,4 +1,6 @@
 const mysql = require('mysql');
+const mysql2 = require('mysql2');
+const Sequelize = require('sequelize');
 
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -16,5 +18,9 @@ const selectAll = (callback) => {
     }
   });
 };
+// select the top 5 champions used
+// const selectTop = () =>{
+//   connection.query('SELECT ')
+// };
 
 module.exports.selectAll = selectAll;
