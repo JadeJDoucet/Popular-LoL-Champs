@@ -137,5 +137,6 @@ const champIdToName = ($id) => {
     case 59: return 'Jarvan IV'; break;
     case 81: return 'Ezreal'; break;
   }
+  return 'If this returns, return the switch statement';
 };
 module.exports = { champIdToName };

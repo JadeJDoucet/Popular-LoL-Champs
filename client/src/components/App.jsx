@@ -25,7 +25,7 @@ class App extends React.Component {
   }
 
   getItems() {
-    return axios.get('/items')
+    return axios.get('/matches') // change to /matches
       .then(response => response.data);
   }
 

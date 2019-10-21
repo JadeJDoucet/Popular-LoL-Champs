@@ -28,20 +28,20 @@ const kayn = Kayn(RIOT_LOL_API_KEY)(/* {
 } */);
 const getMatchList = (accountId) => {
   return kayn.Matchlist.by.accountID(accountId);
-    // .region(REGIONS.KOREA)
-    // .query({
-    //   season: 9,
-    //   queue: [420, 440],
-    // })
-    // .callback((err, matchlist) => {
-    //   console.log(matchlist.matches.length);
-    // });
-    // .then((response) => {
-    //   console.log(response);
-    // })
-    // .catch((err) => {
-    //   console.error(err);
-    // });
+  // .region(REGIONS.KOREA)
+  // .query({
+  //   season: 9,
+  //   queue: [420, 440],
+  // })
+  // .callback((err, matchlist) => {
+  //   console.log(matchlist.matches.length);
+  // });
+  // .then((response) => {
+  //   console.log(response);
+  // })
+  // .catch((err) => {
+  //   console.error(err);
+  // });
 };
 
 const getSummonerByName = (username) => {
@@ -54,7 +54,11 @@ const getSummonerByName = (username) => {
       return getMatchList(accountId);
     })
     .then((matchlistObject) => {
-      console.log(matchlistObject);
+    //   console.log(matchlistObject);
+      // contains matches: a list of matches with a champion property
+      // matches: also contains gameId for potential future use!
+      // also contains totalGames property
+      
     })
     .catch(error => console.error(error));
 };
