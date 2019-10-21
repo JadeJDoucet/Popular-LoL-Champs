@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS test;
 
 CREATE DATABASE test;
 
-USE test;
+USE league;
 
 CREATE TABLE items (
   id int NOT NULL AUTO_INCREMENT,
