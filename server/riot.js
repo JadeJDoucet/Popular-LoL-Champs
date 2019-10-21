@@ -1,4 +1,6 @@
 const { Kayn, REGIONS } = require('kayn');
+const { RIOT_LOL_API_KEY } = require('./config');
+// route to api key
 
 const kayn = Kayn('RGAPI-my-api-key')(/* {
     region: REGIONS.NORTH_AMERICA,
