@@ -9,6 +9,8 @@ const connection = mysql.createConnection({
   database: 'test',
 });
 
+// maybe create database
+// CREATE DATABASE champions
 const selectAll = (callback) => {
   connection.query('SELECT * FROM items', (err, items) => {
     if (err) {
