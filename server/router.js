@@ -1,9 +1,12 @@
 const { Router } = require('express');
 const items = require('./db');
+const { getSummonerByName, getMatchList } = require('./riot');
 // const path = require('path');
 const router = Router();
 
-router.get('/', (req, res) => {
+router.get('/matches', (req, res) => {
+    // hardcoded purexpwnage until username added to req.body
+    getSummonerByName('purexpwnage')
   res.redirect('/client/dist/index.html');
   console.log('this worked');
   res.end('Redirected!');
