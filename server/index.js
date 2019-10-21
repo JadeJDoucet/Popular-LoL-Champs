@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const items = require('./db');
 const { router } = require('./router');
 
-const PORT = 3000;
+const PORT = process.env.port || 3000;
 const app = express();
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
