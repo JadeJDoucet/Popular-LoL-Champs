@@ -1,6 +1,6 @@
 const mysql = require('mysql');
-const mysql2 = require('mysql2');
-const Sequelize = require('sequelize');
+// const mysql2 = require('mysql2');
+// const Sequelize = require('sequelize');
 
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -9,8 +9,7 @@ const connection = mysql.createConnection({
   database: 'test',
 });
 
-// maybe create database
-// CREATE DATABASE champions
+
 const selectAll = (callback) => {
   connection.query('SELECT * FROM items', (err, items) => {
     if (err) {
