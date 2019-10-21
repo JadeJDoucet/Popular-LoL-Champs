@@ -1,13 +1,14 @@
-DROP DATABASE IF EXISTS test;
+DROP DATABASE IF EXISTS league;
 
-CREATE DATABASE test;
+CREATE DATABASE league;
 
 USE league;
-e
-CREATE TABLE items (
+
+CREATE TABLE champions (
   id int NOT NULL AUTO_INCREMENT,
+  championId int NOT NULL,
   quantity integer NOT NULL,
-  description varchar(50) NOT NULL,
+  name varchar(50) NOT NULL,
   PRIMARY KEY (ID)
 );
 
