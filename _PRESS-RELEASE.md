@@ -17,22 +17,22 @@ Once the project moves into development, the press release can be used as a touc
  -->
 
 ## Heading
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  > LoL Top Champions
 
 ## Sub-Heading
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > We provide the top champions in use to optimize your gameplay experience
 
 ## Summary
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > Our website will provide you with the tools you need to make your gameplay experience better. Seeing the most commonly used champions allows you to have that extra edge on your opponents in blind picks to allow you to counter-pick even better!
 
 ## Problem
-  > Describe the problem your product solves.
+  > You can't always see the enemy team when using blind pick, this product increases your chances of being able to counter pick the enemy team
 
 ## Solution
-  > Describe how your product elegantly solves the problem.
+  > This website will use statistics based on our users to help you optimize your gameplay. 
 
 ## Quote from You
-  > A quote from a spokesperson in your company.
+  > With great power, comes great picks. 
 
 ## How to Get Started
   > Describe how easy it is to get started.
