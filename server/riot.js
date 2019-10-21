@@ -26,19 +26,8 @@ const kayn = Kayn(RIOT_LOL_API_KEY)(/* {
         },
     },
 } */);
-
-const getSummonerByName = (username) => {
-  kayn.Summoner.by.name(username)
-    .then((summoner) => {
-      console.log(summoner);
-    })
-    .then(console.log)
-    .catch(error => console.error(error));
-};
-// getSummonerByName should return an object with accountId property
-// on reponse body, use this for getMatchlist accountId
 const getMatchList = (accountId) => {
-  kayn.Matchlist.by.accountID(3440481)
+  return kayn.Matchlist.by.accountID(accountId);
     // .region(REGIONS.KOREA)
     // .query({
     //   season: 9,
@@ -47,13 +36,30 @@ const getMatchList = (accountId) => {
     // .callback((err, matchlist) => {
     //   console.log(matchlist.matches.length);
     // });
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+    // .then((response) => {
+    //   console.log(response);
+    // })
+    // .catch((err) => {
+    //   console.error(err);
+    // });
 };
+
+const getSummonerByName = (username) => {
+  kayn.Summoner.by.name(username)
+    .then((summoner) => {
+    //   console.log(summoner);
+      return summoner.accountId;
+    })
+    .then((accountId) => {
+      return getMatchList(accountId);
+    })
+    .then((matchlistObject) => {
+      console.log(matchlistObject);
+    })
+    .catch(error => console.error(error));
+};
+// getSummonerByName should return an object with accountId property
+// on reponse body, use this for getMatchlist accountId
 /*
 * handle requests to league of legends here
 * make functions to handle requests
