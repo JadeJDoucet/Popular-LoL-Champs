@@ -3,7 +3,7 @@ DROP DATABASE IF EXISTS test;
 CREATE DATABASE test;
 
 USE league;
-
+e
 CREATE TABLE items (
   id int NOT NULL AUTO_INCREMENT,
   quantity integer NOT NULL,

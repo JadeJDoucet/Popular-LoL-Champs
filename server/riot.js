@@ -45,7 +45,7 @@ const getMatchList = (accountId) => {
 };
 
 const getSummonerByName = (username) => {
-  kayn.Summoner.by.name(username)
+  return kayn.Summoner.by.name(username)
     .then((summoner) => {
     //   console.log(summoner);
       return summoner.accountId;
@@ -58,7 +58,7 @@ const getSummonerByName = (username) => {
       // contains matches: a list of matches with a champion property
       // matches: also contains gameId for potential future use!
       // also contains totalGames property
-      
+      return matchlistObject.matches;
     })
     .catch(error => console.error(error));
 };

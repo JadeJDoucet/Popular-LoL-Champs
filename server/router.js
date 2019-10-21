@@ -15,9 +15,11 @@ const router = Router();
 // });
 
 router.post('/matches', (req, res) => {
+    // console.log(req);
   const { username } = req.body;
   getSummonerByName(username)
     .then((matches) => {
+      console.log(matches);
       // function here to pass in matches, save them to db
     }); // getChampIdToName on each number passed
     // keep names in array, pass them to our client
