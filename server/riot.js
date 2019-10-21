@@ -26,5 +26,10 @@ const kayn = Kayn('RGAPI-my-api-key')(/* {
         },
     },
 } */);
-// handle requests to league of legends here
-// maybe require kayn here
+/*
+* handle requests to league of legends here
+* make functions to handle requests
+* take in username to find user id
+* then pass that username to next function which makes
+* get request for match list
+*/
