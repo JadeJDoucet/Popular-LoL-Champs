@@ -23,8 +23,14 @@ Champion.sync()
 
 // select the top 5 champions used
 const selectTop = () => {
-  Champion.findAll()
-    .then(results => console.log(results))
+  return Champion.findAll()
+    .then((results) => {
+      // console.log(results)
+      const result = results.sort((a, b) => {
+        return a.quantity - b.quantity; 
+      });
+      return result.slice(0, 5); // return top 5 champions
+    })
     .catch(err => console.error(err));
 };
 // pass in championId and convert to name here?
