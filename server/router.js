@@ -2,24 +2,29 @@ const { Router } = require('express');
 const items = require('./db');
 const { getSummonerByName } = require('./riot');
 const { champIdToName } = require('../example-data/champions');
+const { selectTop, incrementChampion } = require('./db/index');
 // getMatchList is also available^
 // const path = require('path');
 const router = Router();
 
-// router.get('/matches', (req, res) => {
-//   // hardcoded purexpwnage until username added to req.body
-// //   getSummonerByName('purexpwnage'); // may need to be a promise
-//   console.log('this worked');
-// //   res.redirect('/');
-// //   res.end('Redirected!');
-// });
+router.get('/champions', (req, res) => {
+  // hardcoded purexpwnage until username added to req.body
+//   getSummonerByName('purexpwnage'); // may need to be a promise
+// return s
+  console.log('this worked');
+//   res.redirect('/');
+//   res.end('Redirected!');
+});
 
 router.post('/matches', (req, res) => {
-    // console.log(req);
   const { username } = req.body;
   getSummonerByName(username)
     .then((matches) => {
-      console.log(matches);
+    //   console.log(matches);
+    matches.forEach((match) => {
+        let id = match.champion;
+        incrementChampion(id);
+    });
       // function here to pass in matches, save them to db
     }); // getChampIdToName on each number passed
     // keep names in array, pass them to our client

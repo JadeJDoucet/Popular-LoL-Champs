@@ -30,16 +30,20 @@ const incrementChampion = (id) => {
     .catch((err) => { console.error(err); });
 };
 // Champion.sync({ alter: true }) in add to champions?
-// create and call function to add all champions 
+// create and call function to add all champions
 // to database from function
-const addChampions = (id, name) => {
+const addChampions = (id) => {
   // add a champion passed in, into the db
+  // check if champion exists
+  let name = champIdToName(id);
   return Champion.create({
     id,
     name,
   })
     .catch((err) => { console.error(err); });
 };
+// get array of champions, add to db
+
 
 // const connection = mysql.createConnection({
 //   host: 'localhost',
@@ -62,4 +66,5 @@ const addChampions = (id, name) => {
 module.exports = {
   selectTop,
   incrementChampion,
+  addChampions,
 };
