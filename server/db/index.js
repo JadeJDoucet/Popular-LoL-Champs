@@ -17,13 +17,15 @@ const Champion = db.define('Champion', {
 
 Champion.sync()
   .then(() => {
-    console.log('Champions Added');
+    console.log('Champions Table Added');
   })
   .catch(err => console.error(err));
 
 // select the top 5 champions used
 const selectTop = () => {
-
+  Champion.findAll()
+    .then(results => console.log(results))
+    .catch(err => console.error(err));
 };
 // pass in championId and convert to name here?
 const incrementChampion = (id) => {
@@ -40,34 +42,23 @@ const addChampions = () => {
   // check if champion exists
   champions.forEach((champion) => {
     const championId = champion.key;
-    // const championName = champion.name;
-    Champion.findAll({ where: { id: championId } }).then((result) => {
-      if (result === undefined || result === null) {
-        Champion.create({
-          id: championId,
-          championId: champion.key,
-          championName: champion.name,
-          quantity: 0,
-        });
-      }
-      // //  else {
-      //   Champion.update({
-      //     id: championId,
-      //     championName,
-      //     quantity: 0,
-      //   }, { where: { id: championId } });
-      // }
+    Champion.create({
+      id: championId,
+      championId: champion.key,
+      championName: champion.name,
+      quantity: 0,
     })
-
       .catch((err) => { console.error(err); });
   });
-  // let championId = champions[0].key;
-  // let championName = champions[0].name;
-  // console.log(championName);
-  // .then(s => console.log('BOOM, added!', s))
-  // .catch((err) => {console.error(err); });
 };
+
 addChampions();
+// Champion.sync()
+//   .then((s) => {
+//     selectTop();
+//     console.log(s);
+//   })
+//   .catch((err) => { console.error(err); });
 // Champion.sync({ alter: true });
 // get array of champions, add to db
 
