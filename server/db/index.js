@@ -1,6 +1,7 @@
 const mysql = require('mysql');
 // const mysql2 = require('mysql2');
 const Sequelize = require('sequelize');
+
 const db = new Sequelize('league', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
@@ -18,30 +19,47 @@ Champion.sync()
   })
   .catch(err => console.error(err));
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'FILL_ME_IN',
-  database: 'test',
-});
-
-
-const selectAll = (callback) => {
-  connection.query('SELECT * FROM items', (err, items) => {
-    if (err) {
-      callback(err, null);
-    } else {
-      callback(null, items);
-    }
-  });
-};
 // select the top 5 champions used
-// const selectTop = () =>{
-//   connection.query('SELECT ')
+const selectTop = () => {
+
+};
+// pass in championId and convert to name here?
+const incrementChampion = (id) => {
+  Champion.update({ quantity: Sequelize.literal('quantity + 1') }, { where: { id } }) // should increment quantity
+    .then((success) => { console.log('Champion Count updated', success); })
+    .catch((err) => { console.error(err); });
+};
+// Champion.sync({ alter: true }) in add to champions?
+// create and call function to add all champions 
+// to database from function
+const addChampions = (id, name) => {
+  // add a champion passed in, into the db
+  return Champion.create({
+    id,
+    name,
+  })
+    .catch((err) => { console.error(err); });
+};
+
+// const connection = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'root',
+//   password: 'FILL_ME_IN',
+//   database: 'test',
+// });
+
+
+// const selectAll = (callback) => {
+//   connection.query('SELECT * FROM items', (err, items) => {
+//     if (err) {
+//       callback(err, null);
+//     } else {
+//       callback(null, items);
+//     }
+//   });
 // };
 
-// const addToChampions = () => {
-
-// };
-
-module.exports.selectAll = selectAll;
+module.exports = {
+  selectTop,
+  incrementChampion,
+};
