@@ -2,5 +2,22 @@ body {
     background-image: url('./images/wallpaper.jpg');
 }
 li {
+    margin-left: 10%;
+    margin-top: 5%;
     color: rgb(35, 145, 145);
+}
+#title {
+    color: rgb(182, 182, 229);
+    margin-left: 50%;
+}
+h2 {
+    color: rgb(182, 182, 229);
+}
+input {
+    margin-left: 20%;
+}
+button {
+    margin-left: .3%;
+    border-radius: 5%;
+
 }
