@@ -27,6 +27,21 @@ Champion.sync()
   })
   .catch(err => console.error(err));
 
+// create and call function to add all champions
+// to database from function
+const addChampions = () => {
+  champions.forEach((champion) => {
+    const championId = champion.key;
+    Champion.create({
+      id: championId,
+      championId: champion.key,
+      championName: champion.name,
+      quantity: 0,
+    })
+      .catch((err) => { console.error(err); });
+  });
+};
+
 Champion.findAll()
   .then((success) => {
     if (success === undefined || success === null || success.length < 2) {
@@ -54,20 +69,6 @@ const incrementChampion = (id) => {
   Champion.increment('quantity', { where: { id } });
 };
 
-// create and call function to add all champions
-// to database from function
-const addChampions = () => {
-  champions.forEach((champion) => {
-    const championId = champion.key;
-    Champion.create({
-      id: championId,
-      championId: champion.key,
-      championName: champion.name,
-      quantity: 0,
-    })
-      .catch((err) => { console.error(err); });
-  });
-};
 // Champion.findAll()
 //   .then((success) => {
 //     if (success === undefined || success === null) {
