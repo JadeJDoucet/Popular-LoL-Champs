@@ -3,16 +3,17 @@ import React from 'react';
 import axios from 'axios';
 
 import List from './List.jsx';
-import UserButton from './UserButton.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      username: '',
       items: [],
     };
+    this.submitHandler = this.submitHandler.bind(this);
     this.getItems = this.getItems.bind(this);
-    this.addUsername = this.addUsername.bind(this); //bound here
+    this.addUsername = this.addUsername.bind(this); // bound here
   }
 
   componentDidMount() {
@@ -32,24 +33,32 @@ class App extends React.Component {
       .then(response => response.data);
   }
 
-  addUsername(username) {
-    return axios.post('/', { username })
+  addUsername() {
+    const { username } = this.state;
+    return axios.post('/matches', { username })
       .then(() => {
         console.log(`${username} sent to server!`);
       })
       .then(() => {
         // this.componentDidMount();// update list and render again
+        this.getItems();
       })
       .catch((err) => { console.error(err); });
   }
 
-  render() {
-    const { items } = this.state;
+  submitHandler(event) {
+    this.setState({
+      username: event.target.value,
+    });
+  }
 
+  render() {
+    const { items, username } = this.state;
     return (
       <div>
         <h1> Add to our database!</h1>
-        <UserButton onClick={this.addUsername} />
+        <input type="text" value={username} onChange={this.submitHandler} />
+        <button type="submit" onClick={this.addUsername}> Click Me </button>
         <h1>Item List</h1>
         <List items={items} />
       </div>
