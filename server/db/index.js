@@ -1,7 +1,7 @@
 const mysql = require('mysql');
 // const mysql2 = require('mysql2');
 const Sequelize = require('sequelize');
-const { champions } = require('../../example-data/championArray');
+const champions = require('../../example-data/championArray');
 
 const db = new Sequelize('league', 'root', '', {
   host: 'localhost',
@@ -12,7 +12,7 @@ const Champion = db.define('Champion', {
   id: { primaryKey: true, type: Sequelize.INTEGER },
   quantity: Sequelize.INTEGER,
   championName: Sequelize.STRING,
-  championId: Sequelize.INTEGER,
+  // championId: Sequelize.INTEGER,
 });
 
 Champion.sync()
@@ -27,9 +27,10 @@ const selectTop = () => {
 };
 // pass in championId and convert to name here?
 const incrementChampion = (id) => {
-  Champion.update({ quantity: Sequelize.literal('quantity + 1') }, { where: { id } }) // should increment quantity
-    .then((success) => { console.log('Champion Count updated', success); })
-    .catch((err) => { console.error(err); });
+  // Champion.update({ quantity: Sequelize.literal('quantity + 1') }, { where: { id } }) // should increment quantity
+  //   .then((success) => { console.log('Champion Count updated', success); })
+  //   .catch((err) => { console.error(err); });
+  Champion.increment('quantity', { where: { id } });
 };
 // Champion.sync({ alter: true }) in add to champions?
 // create and call function to add all champions
@@ -37,25 +38,37 @@ const incrementChampion = (id) => {
 const addChampions = () => {
   // add a champion passed in, into the db
   // check if champion exists
-  // champions.forEach((champion) => {
-  //   Champion.create({
-  //     championId: champion.key,
-  //     championName: champion.name,
-  //     quantity: 0,
-  //   })
-  //     .catch((err) => { console.error(err); });
-  // });
-  let championId = champions[0].key;
-  let championName = champions[0].name;
-  Champion.create({
+  champions.forEach((champion) => {
+    const championId = champion.key;
+    // const championName = champion.name;
+    Champion.findAll({ where: { id: championId } }).then((result) => {
+      if (result === undefined || result === null) {
+        Champion.create({
+          id: championId,
+          championId: champion.key,
+          championName: champion.name,
+          quantity: 0,
+        });
+      }
+      // //  else {
+      //   Champion.update({
+      //     id: championId,
+      //     championName,
+      //     quantity: 0,
+      //   }, { where: { id: championId } });
+      // }
+    })
 
-    id: championId,
-    championName,
-  }).then(s => console.log('BOOM, added!', s))
-    .catch((err) => {console.error(err); });
+      .catch((err) => { console.error(err); });
+  });
+  // let championId = champions[0].key;
+  // let championName = champions[0].name;
+  // console.log(championName);
+  // .then(s => console.log('BOOM, added!', s))
+  // .catch((err) => {console.error(err); });
 };
 addChampions();
-Champion.sync({ alter: true });
+// Champion.sync({ alter: true });
 // get array of champions, add to db
 
 
