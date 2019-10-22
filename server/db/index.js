@@ -29,8 +29,7 @@ const selectTop = () => {
       const result = results.sort((a, b) => {
         return b.quantity - a.quantity;
       });
-      console.log(result[0], result[1], result[2]);
-      return result.slice(0, 10); // return top 10 champions
+      return result.slice(0, 5); // return top champions
     })
     .catch(err => console.error(err));
 };
@@ -61,15 +60,6 @@ Champion.findAll()
       console.log('Champions Table Up-To-Date');
     }
   });
-// Champion.sync()
-//   .then((s) => {
-//     selectTop();
-//     console.log(s);
-//   })
-//   .catch((err) => { console.error(err); });
-// Champion.sync({ alter: true });
-// get array of champions, add to db
-
 
 // const connection = mysql.createConnection({
 //   host: 'localhost',
