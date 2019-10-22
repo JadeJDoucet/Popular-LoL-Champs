@@ -3,10 +3,23 @@ const mysql = require('mysql');
 const Sequelize = require('sequelize');
 const champions = require('../../example-data/championArray');
 
-const db = new Sequelize('league', 'root', '', {
-  host: 'localhost',
+// const db = new Sequelize('league', 'root', '', {
+//   host: 'localhost',
+//   dialect: 'mysql',
+// });
+
+const options = {
+  HOST: '34.66.188.153',
+  PORT: '3306',
+  DB_NAME: 'db_jade',
+  USER_NAME: 'jade',
+  USER_PASS: 'u4M7aUzkKgGUpUZG',
+  SHELL: "mysql - h 34.66.188.153 - P 3306 - u jade - p'u4M7aUzkKgGUpUZG' db_jade",
   dialect: 'mysql',
-});
+};
+
+const db = new Sequelize('league', 'root', '', options);
+
 
 const Champion = db.define('Champion', {
   id: { primaryKey: true, type: Sequelize.INTEGER },

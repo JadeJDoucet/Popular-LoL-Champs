@@ -1,3 +1,6 @@
 body {
     background-image: url('./images/wallpaper.jpg');
 }
+li {
+    color: rgb(35, 145, 145);
+}
