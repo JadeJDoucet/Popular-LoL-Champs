@@ -17,7 +17,7 @@ const Champion = db.define('Champion', {
 
 Champion.sync()
   .then(() => {
-    console.log('Champions Table Added');
+    console.log('Champions Table Loaded');
   })
   .catch(err => console.error(err));
 
@@ -57,7 +57,7 @@ Champion.findAll()
     if (success === undefined || success === null) {
       addChampions();
     } else {
-      console.log('Champions Table up-to-date');
+      console.log('Champions Table Up-To-Date');
     }
   });
 // Champion.sync()
