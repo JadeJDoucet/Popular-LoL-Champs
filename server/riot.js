@@ -47,7 +47,7 @@ const getMatchList = (accountId) => {
 const getSummonerByName = (username) => {
   return kayn.Summoner.by.name(username)
     .then((summoner) => {
-    //   console.log(summoner);
+      console.log(summoner);
       return summoner.accountId;
     })
     .then((accountId) => {

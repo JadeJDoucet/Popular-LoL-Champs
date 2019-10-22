@@ -3,22 +3,15 @@ const mysql = require('mysql');
 const Sequelize = require('sequelize');
 const champions = require('../../example-data/championArray');
 
-const db = new Sequelize('league', 'root', '', {
-  host: 'localhost',
+
+
+const options = {
+  host: '34.66.188.153',
+  PORT: 3306,
   dialect: 'mysql',
-});
+};
 
-// const options = {
-//   HOST: '34.66.188.153',
-//   PORT: '3306',
-//   // DB_NAME: 'db_jade',
-//   // USER_NAME: 'jade',
-//   // USER_PASS: 'u4M7aUzkKgGUpUZG',
-//   SHELL: "mysql - h 34.66.188.153 - P 3306 - u jade - p'u4M7aUzkKgGUpUZG' db_jade",
-//   dialect: 'mysql',
-// };
-
-// const db = new Sequelize('db_jade', 'jade', 'u4M7aUzkKgGUpUZG', options);
+const db = new Sequelize('db_jade', 'jade', 'u4M7aUzkKgGUpUZG', options);
 
 
 const Champion = db.define('Champion', {
@@ -34,11 +27,21 @@ Champion.sync()
   })
   .catch(err => console.error(err));
 
+Champion.findAll()
+  .then((success) => {
+    if (success === undefined || success === null || success.length < 2) {
+      addChampions();
+    } else {
+      console.log('Champions Table Up-To-Date');
+    }
+  })
+  .catch(err => console.error(err));
+
 // select the top 5 champions used
 const selectTop = () => {
   return Champion.findAll()
     .then((results) => {
-      // console.log(results)
+      console.log(results)
       const result = results.sort((a, b) => {
         return b.quantity - a.quantity;
       });
@@ -65,14 +68,15 @@ const addChampions = () => {
       .catch((err) => { console.error(err); });
   });
 };
-Champion.findAll()
-  .then((success) => {
-    if (success === undefined || success === null) {
-      addChampions();
-    } else {
-      console.log('Champions Table Up-To-Date');
-    }
-  });
+// Champion.findAll()
+//   .then((success) => {
+//     if (success === undefined || success === null) {
+//       addChampions();
+//     } else {
+//       console.log('Champions Table Up-To-Date');
+//     }
+//   })
+//   .catch(err => console.error(err));
 
 // const connection = mysql.createConnection({
 //   host: 'localhost',

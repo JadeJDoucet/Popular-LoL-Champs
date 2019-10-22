@@ -17,7 +17,7 @@ router.get('/champions', (req, res) => {
 
 router.post('/matches', (req, res) => {
   const { username } = req.body;
-  getSummonerByName(username)
+  return getSummonerByName(username)
     .then((matches) => {
       matches.forEach((match) => {
         const id = match.champion;
