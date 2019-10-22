@@ -30,7 +30,7 @@ class App extends React.Component {
 
 
   getItems() {
-    return axios.get('/champions') // change to /matches
+    return axios.get('/champions')
       .then(response => response.data);
   }
 
@@ -68,10 +68,10 @@ class App extends React.Component {
     const { items, username } = this.state;
     return (
       <div>
-        <h1> Add to our database!</h1>
+        <h1>LoL Top Picks</h1>
         <input type="text" value={username} onChange={this.submitHandler} />
-        <button type="submit" onClick={this.addUsername}> Click Me </button>
-        <h1>Item List</h1>
+        <button type="submit" onClick={this.addUsername}> Add Username </button>
+        <h1>Item List </h1>
         <List items={items} />
       </div>
     );

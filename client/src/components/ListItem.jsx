@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 const ListItem = ({ item }) => (
   <div>
-    { item.championName }
+    <li> <b>{item.championName} </b>
+      <p><b>Estimated Games: </b>{item.quantity}</p>
+    </li>
   </div>
 );
 

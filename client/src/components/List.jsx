@@ -5,9 +5,8 @@ import ListItem from './ListItem.jsx';
 
 const List = ({ items }) => (
   <div>
-    <h4> List Component </h4>
-    Here are the top { items.length } Champions!
-    { items.map(item => <ListItem item={item} />)}
+    <h4> Here are the top {items.length} Champions! </h4>
+    {items.map(item => <ListItem item={item} key={item.id} />)}
   </div>
 );
 
