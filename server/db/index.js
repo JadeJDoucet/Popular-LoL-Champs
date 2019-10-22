@@ -27,26 +27,21 @@ const selectTop = () => {
     .then((results) => {
       // console.log(results)
       const result = results.sort((a, b) => {
-        return a.quantity - b.quantity; 
+        return b.quantity - a.quantity;
       });
-      return result.slice(0, 5); // return top 5 champions
+      console.log(result[0], result[1], result[2]);
+      return result.slice(0, 10); // return top 10 champions
     })
     .catch(err => console.error(err));
 };
-// pass in championId and convert to name here?
+
 const incrementChampion = (id) => {
-  // Champion.update({ quantity: Sequelize.literal('quantity + 1') }, { where: { id } })
-  // should increment quantity
-  //   .then((success) => { console.log('Champion Count updated', success); })
-  //   .catch((err) => { console.error(err); });
   Champion.increment('quantity', { where: { id } });
 };
-// Champion.sync({ alter: true }) in add to champions?
+
 // create and call function to add all champions
 // to database from function
 const addChampions = () => {
-  // add a champion passed in, into the db
-  // check if champion exists
   champions.forEach((champion) => {
     const championId = champion.key;
     Champion.create({

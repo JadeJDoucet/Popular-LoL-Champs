@@ -19,18 +19,15 @@ router.post('/matches', (req, res) => {
   const { username } = req.body;
   getSummonerByName(username)
     .then((matches) => {
-    //   console.log(matches);
       matches.forEach((match) => {
         const id = match.champion;
         incrementChampion(id);
       });
     })
-    .then((s) => {
-      console.log('incremented!');
-    }); // getChampIdToName on each number passed
-  // keep names in array, pass them to our client
-  // then update items arr in client if top champions changes
-  res.send('added to our database!'); // will add info returned from getSumm to db
+    .then(() => {
+      res.end('added to our database!'); // will add info returned from getSumm to db
+    })
+    .catch((err) => { console.error(err); }); // getChampIdToName on each number passed
 });
 
 // router.get('/items', (req, res) => {

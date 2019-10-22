@@ -28,9 +28,22 @@ class App extends React.Component {
       });
   }
 
+
   getItems() {
     return axios.get('/champions') // change to /matches
       .then(response => response.data);
+  }
+
+  stateSetter() {
+    this.getItems()
+      .then((data) => {
+        this.setState({
+          items: data,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   addUsername() {
@@ -40,8 +53,7 @@ class App extends React.Component {
         console.log(`${username} sent to server!`);
       })
       .then(() => {
-        // this.componentDidMount();// update list and render again
-        this.getItems();
+        this.stateSetter(); // update list to render changes
       })
       .catch((err) => { console.error(err); });
   }

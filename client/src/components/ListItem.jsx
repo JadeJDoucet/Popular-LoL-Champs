@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const ListItem = ({ item }) => (
   <div>
-    { item.description }
+    { item.championName }
   </div>
 );
 

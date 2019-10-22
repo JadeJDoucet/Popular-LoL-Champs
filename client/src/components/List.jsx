@@ -6,7 +6,7 @@ import ListItem from './ListItem.jsx';
 const List = ({ items }) => (
   <div>
     <h4> List Component </h4>
-    There are { items.length } items.
+    Here are the top { items.length } Champions!
     { items.map(item => <ListItem item={item} />)}
   </div>
 );
