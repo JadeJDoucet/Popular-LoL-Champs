@@ -29,7 +29,8 @@ const selectTop = () => {
 };
 // pass in championId and convert to name here?
 const incrementChampion = (id) => {
-  // Champion.update({ quantity: Sequelize.literal('quantity + 1') }, { where: { id } }) // should increment quantity
+  // Champion.update({ quantity: Sequelize.literal('quantity + 1') }, { where: { id } })
+  // should increment quantity
   //   .then((success) => { console.log('Champion Count updated', success); })
   //   .catch((err) => { console.error(err); });
   Champion.increment('quantity', { where: { id } });
@@ -51,8 +52,14 @@ const addChampions = () => {
       .catch((err) => { console.error(err); });
   });
 };
-
-addChampions();
+Champion.findAll()
+  .then((success) => {
+    if (success === undefined || success === null) {
+      addChampions();
+    } else {
+      console.log('Champions Table up-to-date');
+    }
+  });
 // Champion.sync()
 //   .then((s) => {
 //     selectTop();

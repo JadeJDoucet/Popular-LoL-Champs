@@ -2,7 +2,7 @@ const { champions } = require('../example-data/championArray');
 const { Router } = require('express');
 const items = require('./db');
 const { getSummonerByName } = require('./riot');
-const { champIdToName } = require('../example-data/champions');
+// const { champIdToName } = require('../example-data/champions');
 const { selectTop, incrementChampion } = require('./db/index');
 // getMatchList is also available^
 // const path = require('path');
@@ -27,6 +27,9 @@ router.post('/matches', (req, res) => {
         incrementChampion(id);
     });
       // function here to pass in matches, save them to db
+    })
+    .then((s) => {
+      console.log('incremented!');
     }); // getChampIdToName on each number passed
     // keep names in array, pass them to our client
     // then update items arr in client if top champions changes
