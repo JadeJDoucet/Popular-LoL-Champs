@@ -1,3 +1,4 @@
+const { champions } = require('../example-data/championArray');
 const { Router } = require('express');
 const items = require('./db');
 const { getSummonerByName } = require('./riot');
@@ -11,7 +12,7 @@ router.get('/champions', (req, res) => {
   // hardcoded purexpwnage until username added to req.body
 //   getSummonerByName('purexpwnage'); // may need to be a promise
 // return s
-  console.log('this worked');
+  console.log({ champions });
 //   res.redirect('/');
 //   res.end('Redirected!');
 });

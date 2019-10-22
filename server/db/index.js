@@ -1,6 +1,7 @@
 const mysql = require('mysql');
 // const mysql2 = require('mysql2');
 const Sequelize = require('sequelize');
+const { champions } = require('../../example-data/championArray');
 
 const db = new Sequelize('league', 'root', '', {
   host: 'localhost',
@@ -11,6 +12,7 @@ const Champion = db.define('Champion', {
   id: { primaryKey: true, type: Sequelize.INTEGER },
   quantity: Sequelize.INTEGER,
   championName: Sequelize.STRING,
+  championId: Sequelize.INTEGER,
 });
 
 Champion.sync()
@@ -32,16 +34,28 @@ const incrementChampion = (id) => {
 // Champion.sync({ alter: true }) in add to champions?
 // create and call function to add all champions
 // to database from function
-const addChampions = (id) => {
+const addChampions = () => {
   // add a champion passed in, into the db
   // check if champion exists
-  let name = champIdToName(id);
-  return Champion.create({
-    id,
-    name,
-  })
-    .catch((err) => { console.error(err); });
+  // champions.forEach((champion) => {
+  //   Champion.create({
+  //     championId: champion.key,
+  //     championName: champion.name,
+  //     quantity: 0,
+  //   })
+  //     .catch((err) => { console.error(err); });
+  // });
+  let championId = champions[0].key;
+  let championName = champions[0].name;
+  Champion.create({
+
+    id: championId,
+    championName,
+  }).then(s => console.log('BOOM, added!', s))
+    .catch((err) => {console.error(err); });
 };
+addChampions();
+Champion.sync({ alter: true });
 // get array of champions, add to db
 
 

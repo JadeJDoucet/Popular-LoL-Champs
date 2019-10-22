@@ -25,6 +25,7 @@
     "body-parser": "^1.17.2",
     "express": "^4.16.4",
     "kayn": "^0.10.2",
+    "lol-champions": "^8.11.0",
     "mysql": "^2.13.0",
     "mysql2": "^1.7.0",
     "prop-types": "^15.7.2",
