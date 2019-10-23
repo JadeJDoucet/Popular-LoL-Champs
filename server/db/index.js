@@ -10,6 +10,10 @@ const options = {
 
 const db = new Sequelize('db_jade', 'jade', 'u4M7aUzkKgGUpUZG', options);
 
+const User = db.define('User', {
+  id: { primaryKey: true, type: Sequelize.INTEGER },
+  username: Sequelize.STRING,
+});
 
 const Champion = db.define('Champion', {
   id: { primaryKey: true, type: Sequelize.INTEGER },
@@ -17,6 +21,12 @@ const Champion = db.define('Champion', {
   championName: Sequelize.STRING,
   // championId: Sequelize.INTEGER,
 });
+// Sequelize.sync();
+User.sync()
+  .then(() => {
+    console.log('Users Table loaded');
+  })
+  .catch(err => console.error(err));
 
 Champion.sync()
   .then(() => {
@@ -65,9 +75,30 @@ const incrementChampion = (id) => {
   Champion.increment('quantity', { where: { id } });
 };
 
+const usernameCheck = (username) => {
+  // return boolean
+  User.findOne({ where: { username } })
+    .then((response) => {
+      if (response === undefined || response[0] === undefined) {
+        return false;
+      }
+      return true;
+    });
+};
+
+const addUser = (username) => {
+  if (!usernameCheck(username)) {
+    return User.create({ username })
+      .catch(err => console.error(err));
+  } // if user doesnt exist create it
+  return 'User exists!';
+};
+
 
 module.exports = {
   selectTop,
   incrementChampion,
   addChampions,
+  usernameCheck,
+  addUser,
 };
