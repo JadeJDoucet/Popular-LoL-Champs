@@ -13,7 +13,7 @@ class App extends React.Component {
     };
     this.submitHandler = this.submitHandler.bind(this);
     this.getItems = this.getItems.bind(this);
-    this.addUsername = this.addUsername.bind(this); // bound here
+    this.addUsername = this.addUsername.bind(this);
   }
 
   componentDidMount() {
