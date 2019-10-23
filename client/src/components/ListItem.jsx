@@ -6,9 +6,9 @@ const ListItem = ({ item }) => {
   if (item.championName === "Vel'Koz") { // reassigning these to load proper image
     item.championName = 'Velkoz';
   } else
-  if (item.championName === "Kai'Sa") {
-    item.championName = 'Kaisa';
-  }
+    if (item.championName === "Kai'Sa") { // reassigning these to load proper image
+      item.championName = 'Kaisa';
+    }
   return (
     <li>
       <img src={`/images/tiles/${item.championName}_0.jpg`} alt="Character Portrait" />
