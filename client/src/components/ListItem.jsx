@@ -9,8 +9,8 @@ const ListItem = ({ item }) => {
   return (
     <li>
       <img src={`/images/tiles/${item.championName}_0.jpg`} alt="Character Portrait" />
-      <p className="des"> <b>{item.championName} </b></p>
-      <p className="des"><b>Estimated Games: </b>{item.quantity}</p>
+      <p id="name"> <b>{item.championName} </b></p>
+      <p><b>Estimated Games: </b>{item.quantity}</p>
     </li>
   );
 };
