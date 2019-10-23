@@ -1,23 +1,47 @@
 body {
     background-image: url('./images/wallpaper.jpg');
+
+}
+ul {
+    /* margin-left: 10%;
+    margin-top: 5%; */
+    margin: 0 auto;
+    color: rgb(190, 255, 255);
+    list-style-type: none;
+    display: table;
+    text-shadow: 3px 4px 5px black;
+    min-width: 690px;
+	list-style: none;
+    padding-top: 20px;
 }
 li {
-    margin-left: 10%;
-    margin-top: 5%;
-    color: rgb(35, 145, 145);
+display: inline-table;
+margin: 20px;
 }
+
+img {
+    display: inline;
+}
+
 #title {
     color: rgb(182, 182, 229);
-    margin-left: 50%;
+    margin-left: 40%;
+    align-content: left;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 0px 0px 6px #0a0610;
 }
 h2 {
     color: rgb(182, 182, 229);
+    margin-left: 27%;
 }
 input {
-    margin-left: 20%;
+    margin-left: 70%;
 }
 button {
     margin-left: .3%;
     border-radius: 5%;
-
+}
+img {
+    height: 150px;
+    width: 150px;
 }

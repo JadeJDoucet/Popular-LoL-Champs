@@ -71,7 +71,6 @@ class App extends React.Component {
         <h1 id="title">LoL Top Picks</h1>
         <input type="text" value={username} onChange={this.submitHandler} />
         <button type="submit" onClick={this.addUsername}> Add Username </button>
-        <h1>Item List </h1>
         <List items={items} />
       </div>
     );
