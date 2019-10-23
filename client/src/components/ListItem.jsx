@@ -5,7 +5,7 @@ const ListItem = ({ item }) => {
   console.log(item);
   if (item.championName === "Vel'Koz") { // reassigning these to load proper image
     item.championName = 'Velkoz';
-  }
+  } else
   if (item.championName === "Kai'Sa") {
     item.championName = 'Kaisa';
   }
