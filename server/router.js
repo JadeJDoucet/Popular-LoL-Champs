@@ -1,11 +1,7 @@
 const { Router } = require('express');
-const { champions } = require('../example-data/championArray');
-const items = require('./db');
 const { getSummonerByName } = require('./riot');
-// const { champIdToName } = require('../example-data/champions');
 const { selectTop, incrementChampion } = require('./db/index');
-// getMatchList is also available^
-// const path = require('path');
+
 const router = Router();
 
 router.get('/champions', (req, res) => {
@@ -30,15 +26,5 @@ router.post('/matches', (req, res) => {
     .catch((err) => { console.error(err); }); // getChampIdToName on each number passed
 });
 
-// router.get('/items', (req, res) => {
-//   console.log('CONFIRMED');
-//   items.selectAll((err, data) => {
-//     if (err) {
-//       res.sendStatus(500);
-//     } else {
-//       res.json(data);
-//     }
-//   });
-// });
 
 module.exports = { router };

@@ -1,7 +1,5 @@
-const mysql = require('mysql');
 const Sequelize = require('sequelize');
 const champions = require('../../example-data/championArray');
-
 
 
 const options = {
@@ -67,33 +65,6 @@ const incrementChampion = (id) => {
   Champion.increment('quantity', { where: { id } });
 };
 
-// Champion.findAll()
-//   .then((success) => {
-//     if (success === undefined || success === null) {
-//       addChampions();
-//     } else {
-//       console.log('Champions Table Up-To-Date');
-//     }
-//   })
-//   .catch(err => console.error(err));
-
-// const connection = mysql.createConnection({
-//   host: 'localhost',
-//   user: 'root',
-//   password: 'FILL_ME_IN',
-//   database: 'test',
-// });
-
-
-// const selectAll = (callback) => {
-//   connection.query('SELECT * FROM items', (err, items) => {
-//     if (err) {
-//       callback(err, null);
-//     } else {
-//       callback(null, items);
-//     }
-//   });
-// };
 
 module.exports = {
   selectTop,

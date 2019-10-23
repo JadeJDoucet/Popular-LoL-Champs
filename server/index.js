@@ -11,11 +11,9 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(bodyParser.json());
 app.use(router);
-// app.use(bodyParser.urlencoded({ extended: false }));
 
 app.listen(PORT, () => {
   console.log(`Listening on port :${PORT}!`);
 });
-// GET request using champion names
 
 module.exports = { app };
