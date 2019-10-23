@@ -5,6 +5,7 @@ body {
 ul {
     /* margin-left: 10%;
     margin-top: 5%; */
+    /* font-family: 'Carter One', cursive; */
     margin: 0 auto;
     color: rgb(190, 255, 255);
     list-style-type: none;
@@ -15,8 +16,9 @@ ul {
     padding-top: 20px;
 }
 li {
-display: inline-table;
-margin: 20px;
+    font-family: 'Aclonica', sans-serif;
+    display: inline-table;
+    margin: 20px;
 }
 
 img {

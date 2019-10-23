@@ -55,7 +55,6 @@ Champion.findAll()
 const selectTop = () => {
   return Champion.findAll()
     .then((results) => {
-      console.log(results)
       const result = results.sort((a, b) => {
         return b.quantity - a.quantity;
       });
