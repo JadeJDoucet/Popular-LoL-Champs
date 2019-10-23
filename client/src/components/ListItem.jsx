@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 // add image tag to each list item with item.source?
 const ListItem = ({ item }) => {
   console.log(item);
+  if (item.championName === "Vel'Koz") {
+    item.championName = 'Velkoz';
+  }
   return (
     <li>
       <img src={`/images/tiles/${item.championName}_0.jpg`} alt="Character Portrait" />
