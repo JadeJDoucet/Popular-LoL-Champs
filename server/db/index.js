@@ -1,14 +1,21 @@
 const Sequelize = require('sequelize');
+const util = require('util');
 const champions = require('../../example-data/championArray');
 
+// const options = {
+//   host: '34.66.188.153',
+//   PORT: 3306,
+//   dialect: 'mysql',
+// };
+
+// const db = new Sequelize('db_jade', 'jade', 'u4M7aUzkKgGUpUZG', options);
 
 const options = {
-  host: '34.66.188.153',
-  PORT: 3306,
+  host: 'localhost',
   dialect: 'mysql',
 };
 
-const db = new Sequelize('db_jade', 'jade', 'u4M7aUzkKgGUpUZG', options);
+const db = new Sequelize('league', 'root', '', options);
 
 const User = db.define('User', {
   id: { primaryKey: true, type: Sequelize.INTEGER },
@@ -77,23 +84,25 @@ const incrementChampion = (id) => {
 
 const usernameCheck = (username) => {
   // return boolean
-  User.findOne({ where: { username } })
+  return User.findOne({ where: { username } })
     .then((response) => {
-      if (response === undefined || response[0] === undefined) {
+      if (response === undefined || response === null) {
         return false;
       }
       return true;
     });
 };
-
+// usernameCheck = util.promisify(usernameCheck);
 const addUser = (username) => {
   if (!usernameCheck(username)) {
     return User.create({ username })
+      // .then((success) => { return success; })
       .catch(err => console.error(err));
   } // if user doesnt exist create it
   return 'User exists!';
 };
 
+// module.exports.addUser = util.promisify(addUser);
 
 module.exports = {
   selectTop,

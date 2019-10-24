@@ -8,7 +8,8 @@ const ListItem = ({ item }) => {
   } else
     if (item.championName === "Kai'Sa") { // reassigning these to load proper image
       item.championName = 'Kaisa';
-    }
+    } 
+  item.championName = item.championName.replace(/ +/g, "");
   return (
     <li>
       <img src={`/images/tiles/${item.championName}_0.jpg`} alt="Character Portrait" />
