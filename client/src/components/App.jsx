@@ -11,12 +11,14 @@ class App extends React.Component {
       username: '',
       items: [],
       userExists: false,
+      added: false,
     };
     this.submitHandler = this.submitHandler.bind(this);
     this.getItems = this.getItems.bind(this);
     this.addUsername = this.addUsername.bind(this);
     this.userExists = this.userExists.bind(this); // bind here
     this.userDoesntExist = this.userDoesntExist.bind(this);
+    this.userAdded = this.userAdded.bind(this);
   }
 
   componentDidMount() {
@@ -63,7 +65,18 @@ class App extends React.Component {
     });
     setTimeout(() => {
       this.userDoesntExist();
-    }, 2000); // set to two seconds to change state back
+    }, 1500); // set to two seconds to change state back
+  }
+
+  userAdded() {
+    this.setState({
+      added: true,
+    });
+    setTimeout(() => {
+      this.setState({
+        added: false,
+      });
+    }, 1500);
   }
 
   addUsername() {
@@ -72,12 +85,12 @@ class App extends React.Component {
       .then((response) => {
         // console.log(response);
         if (response.data === "User Exists") {
-          this.setState({
-            userExists: true, // set state to true, render something when this is true
-          });
-          setTimeout(() => {
-            this.userDoesntExist();
-          }, 2000);
+          this.userExists();
+        } else {
+          // this.setState({
+          //   added: true,
+          // });
+          this.userAdded();
         }
         console.log(`${username} sent to server!`);
       })
@@ -94,14 +107,14 @@ class App extends React.Component {
   }
 
   render() {
-    const { items, username, userExists } = this.state;
+    const { items, username, userExists, added } = this.state;
     let info;
-    if (!userExists) {
-      info = <p></p>;
-      console.log('Already here');
+    if (added) {
+      info = <h2 id="added">User added! </h2>;
+    } else if (userExists) {
+      info = <h2 id="user-exist"> User exists!</h2>;
     } else {
-      info = <h2> User exists!</h2>;
-      console.log('All good');
+      info = <h2></h2>;
     }
     return (
       <div>

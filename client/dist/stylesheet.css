@@ -47,6 +47,7 @@ input {
 button {
     margin-left: .3%;
     border-radius: 5%;
+    cursor: pointer;
 }
 img {
     height: 150px;
@@ -56,4 +57,13 @@ img {
     font-family: 'Baloo Bhai', cursive;
     font-style: oblique;
     font-size: 20px;
+}
+
+#user-exist {
+    margin-left: 70%;
+    color: red;
+}
+
+#added {
+    margin-left: 70%;
 }
