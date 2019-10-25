@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // add image tag to each list item with item.source
 const ListItem = ({ item }) => {
-  console.log(item);
   if (item.championName === "Vel'Koz") { // reassigning these to load proper image
     item.championName = 'Velkoz';
   } else

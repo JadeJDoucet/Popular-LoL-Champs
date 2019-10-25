@@ -18,8 +18,8 @@ const options = {
 const db = new Sequelize('league', 'root', '', options);
 
 const User = db.define('User', {
-  id: { primaryKey: true, type: Sequelize.INTEGER },
-  username: Sequelize.STRING,
+  // id: { primaryKey: true, type: Sequelize.INTEGER },
+  username: { type: Sequelize.STRING, Unique: true },
 });
 
 const Champion = db.define('Champion', {
@@ -28,7 +28,7 @@ const Champion = db.define('Champion', {
   championName: Sequelize.STRING,
   // championId: Sequelize.INTEGER,
 });
-// Sequelize.sync();
+
 User.sync()
   .then(() => {
     console.log('Users Table loaded');
@@ -82,24 +82,35 @@ const incrementChampion = (id) => {
   Champion.increment('quantity', { where: { id } });
 };
 
-const usernameCheck = (username) => {
-  // return boolean
-  return User.findOne({ where: { username } })
-    .then((response) => {
-      if (response === undefined || response === null) {
-        return false;
-      }
-      return true;
-    });
-};
+// const usernameCheck = (id, username) => {
+//   // return boolean
+//   return User.findOne({ where: { username } })
+//     .then((response) => {
+//       if (response === undefined || response === null) {
+//         return User.create({ username });
+//       } else {
+//       return response;
+//       }
+//     })
+//     .catch(err => console.error(err));
+// };
 // usernameCheck = util.promisify(usernameCheck);
 const addUser = (username) => {
-  if (!usernameCheck(username)) {
-    return User.create({ username })
-      // .then((success) => { return success; })
-      .catch(err => console.error(err));
-  } // if user doesnt exist create it
-  return 'User exists!';
+  return User.findOne({ where: { username } }) // returns null if user doesnt exist
+    .then((response) => {
+      if (response === null) { // if user doesn't exist
+        return User.create({ username });
+      }
+      return false;
+    })
+    .catch((err) => {
+      console.log('Maybe do nothing', err);
+      return false;
+    });
+  // .then((s) => {
+  //   console.log('ADDED?!', s);
+  //   return s;
+  // })
 };
 
 // module.exports.addUser = util.promisify(addUser);
@@ -108,6 +119,6 @@ module.exports = {
   selectTop,
   incrementChampion,
   addChampions,
-  usernameCheck,
+  // usernameCheck,
   addUser,
 };
