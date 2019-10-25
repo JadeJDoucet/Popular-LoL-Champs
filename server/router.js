@@ -29,6 +29,7 @@ router.post('/matches', (req, res) => {
         })
         .catch((err) => { console.error(err); }); // getChampIdToName on each number passed
     }
+    res.send('User Exists');
   })
     .catch(err => console.error(err));
 });

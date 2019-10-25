@@ -10,10 +10,13 @@ class App extends React.Component {
     this.state = {
       username: '',
       items: [],
+      userExists: false,
     };
     this.submitHandler = this.submitHandler.bind(this);
     this.getItems = this.getItems.bind(this);
     this.addUsername = this.addUsername.bind(this);
+    this.userExists = this.userExists.bind(this); // bind here
+    this.userDoesntExist = this.userDoesntExist.bind(this);
   }
 
   componentDidMount() {
@@ -46,10 +49,36 @@ class App extends React.Component {
       });
   }
 
+  userDoesntExist() {
+    this.setState({
+      userExists: false,
+    });
+  }
+
+  userExists() {
+  // if a user exists, render something to page?
+  // set false value to true on state? set timeout to change it back
+    this.setState({
+      userExists: true, // set state to true, render something when this is true
+    });
+    setTimeout(() => {
+      this.userDoesntExist();
+    }, 2000); // set to two seconds to change state back
+  }
+
   addUsername() {
     const { username } = this.state;
     return axios.post('/matches', { username })
-      .then(() => {
+      .then((response) => {
+        // console.log(response);
+        if (response.data === "User Exists") {
+          this.setState({
+            userExists: true, // set state to true, render something when this is true
+          });
+          setTimeout(() => {
+            this.userDoesntExist();
+          }, 2000);
+        }
         console.log(`${username} sent to server!`);
       })
       .then(() => {
@@ -65,10 +94,19 @@ class App extends React.Component {
   }
 
   render() {
-    const { items, username } = this.state;
+    const { items, username, userExists } = this.state;
+    let info;
+    if (!userExists) {
+      info = <p></p>;
+      console.log('Already here');
+    } else {
+      info = <h2> User exists!</h2>;
+      console.log('All good');
+    }
     return (
       <div>
         <h1 id="title">LoL Top Picks</h1>
+        {info}
         <input type="text" value={username} onChange={this.submitHandler} />
         <button type="submit" onClick={this.addUsername}> Add Username </button>
         <List items={items} />
