@@ -87,9 +87,6 @@ class App extends React.Component {
         if (response.data === "User Exists") {
           this.userExists();
         } else {
-          // this.setState({
-          //   added: true,
-          // });
           this.userAdded();
         }
         console.log(`${username} sent to server!`);

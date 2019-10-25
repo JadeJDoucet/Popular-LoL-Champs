@@ -2,20 +2,20 @@ const Sequelize = require('sequelize');
 const util = require('util');
 const champions = require('../../example-data/championArray');
 
-// const options = {
-//   host: '34.66.188.153',
-//   PORT: 3306,
-//   dialect: 'mysql',
-// };
-
-// const db = new Sequelize('db_jade', 'jade', 'u4M7aUzkKgGUpUZG', options);
-
 const options = {
-  host: 'localhost',
+  host: '34.66.188.153',
+  PORT: 3306,
   dialect: 'mysql',
 };
 
-const db = new Sequelize('league', 'root', '', options);
+const db = new Sequelize('db_jade', 'jade', 'u4M7aUzkKgGUpUZG', options);
+
+// const options = {
+//   host: 'localhost',
+//   dialect: 'mysql',
+// };
+
+// const db = new Sequelize('league', 'root', '', options);
 
 const User = db.define('User', {
   // id: { primaryKey: true, type: Sequelize.INTEGER },
@@ -82,19 +82,6 @@ const incrementChampion = (id) => {
   Champion.increment('quantity', { where: { id } });
 };
 
-// const usernameCheck = (id, username) => {
-//   // return boolean
-//   return User.findOne({ where: { username } })
-//     .then((response) => {
-//       if (response === undefined || response === null) {
-//         return User.create({ username });
-//       } else {
-//       return response;
-//       }
-//     })
-//     .catch(err => console.error(err));
-// };
-// usernameCheck = util.promisify(usernameCheck);
 const addUser = (username) => {
   return User.findOne({ where: { username } }) // returns null if user doesnt exist
     .then((response) => {
@@ -107,13 +94,7 @@ const addUser = (username) => {
       console.log('Maybe do nothing', err);
       return false;
     });
-  // .then((s) => {
-  //   console.log('ADDED?!', s);
-  //   return s;
-  // })
 };
-
-// module.exports.addUser = util.promisify(addUser);
 
 module.exports = {
   selectTop,
