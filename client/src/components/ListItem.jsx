@@ -7,8 +7,6 @@ const ListItem = ({ item }) => {
   } else
     if (item.championName === "Kai'Sa") { // reassigning these to load proper image
       item.championName = 'Kaisa';
-    } else if (item.championName === 'LeBlanc') {
-      item.championName = 'Leblanc';
     }
   item.championName = item.championName.replace(/ +/g, "");
   return (
